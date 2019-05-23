@@ -129,7 +129,7 @@ class Page extends Buffer
 		return $this->addBlockingRule($type, $rules);
 	}
 
-	public function authenticate(string $username, string $password): JSHandle
+	public function authenticate(string $username, string $password)
 	{
 		return parent::authenticate([
 			'username' => $username,
@@ -316,6 +316,9 @@ class Page extends Buffer
 		return parent::goBack($options);
 	}
 
+    /**
+     * @param int $milliseconds
+     */
 	public function goBackAfterTimeout(int $milliseconds = 300)
     {
         $this->addAction()->waitForAPM();
@@ -347,6 +350,10 @@ class Page extends Buffer
 		parent::click($selector, $options);
 	}
 
+    /**
+     * @param string $selector
+     * @param int $milliseconds
+     */
 	public function clickAfterTimeout(string $selector, int $milliseconds = 300):void
     {
         $this->addAction()->waitForAPM();
