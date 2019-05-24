@@ -339,6 +339,19 @@ class Page extends Buffer
 		return parent::goForward($options);
 	}
 
+    /**
+     * @param int $milliseconds
+     */
+    public function goForwardAfterTimeout(int $milliseconds = 300)
+    {
+        $this->addAction()->waitForAPM();
+        $this->evaluate(Js::createWithBody("
+	        setTimeout(function(){
+                history.forward();
+            }, {$milliseconds});
+	    "));
+    }
+
 	/**
 	 * @param string $selector
 	 * @param array $options
